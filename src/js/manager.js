@@ -1,10 +1,14 @@
 $(document).ready( function( ) {
+    window.port = chrome.runtime.connect({
+        name: Math.floor( Math.random()*99 )+"-"+Math.floor( Math.random()*99 )
+    });
     let getUserData = _ => {
         window.port.onMessage( response => {
-            return
+            console.log(response)
         });
         window.port.postMessage({
-            action: "getUserData"
+            action: "load",
+            target: null
         })
     }
     let data = getUserData( );
