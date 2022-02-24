@@ -10,7 +10,8 @@
     "content_scripts": [
         {
             "matches": ["https://www.netflix.com/*"],
-            "js": ["src/js/jquery.min.js","src/js/manager.js"]
+            "js": ["src/js/jquery.min.js","src/js/manager.js"],
+            "css": ["manager.css"]
         },
         {
             "matches": ["https://netflix.kavavdigital.com/*"],
