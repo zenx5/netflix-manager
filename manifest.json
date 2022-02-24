@@ -7,20 +7,14 @@
         "service_worker": "src/js/background.js"
     },
     "permissions": ["storage"],
-    "action": {
-        "default_popup": "popup.html",
-        "default_icon": {
-            "16": "/logo.png",
-            "32": "/logo.png",
-            "48": "/logo.png",
-            "128": "/logo.png"
-        }
-    },
     "content_scripts": [
         {
             "matches": ["https://www.netflix.com/*"],
-            "js": ["src/js/jquery.min.js","src/js/manager.js"],
-            "css":[]
+            "js": ["src/js/jquery.min.js","src/js/manager.js"]
+        },
+        {
+            "matches": ["https://netflix.kavavdigital.com/*"],
+            "js": ["src/js/jquery.min.js","src/js/sender.js"]
         }
     ]
   }

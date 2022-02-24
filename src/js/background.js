@@ -5,5 +5,16 @@ chrome.runtime.onInstalled.addListener( () => {
 
 chrome.runtime.onConnect.addListener( function(port) {
     console.log( "Connected!!" );
-
+    port.onMessage.addListener( function(msg,port){
+        switch(msg.action){
+            case 'save':
+                chrome.storage.local.set(msg.data);
+                break;
+            case 'load':
+                chrome.storage.local.get(msg.target, function(data){
+                    
+                })
+                break;
+        }
+    })
 });
