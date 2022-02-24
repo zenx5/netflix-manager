@@ -1,6 +1,6 @@
 {
     "name": "Netflix Manager",
-    "description": "Contacts for Web Whatsapp",
+    "description": "...",
     "version": "1.0",
     "manifest_version": 3,
     "background": {
@@ -18,8 +18,9 @@
     },
     "content_scripts": [
         {
-            "matches": ["https://www.netflix.com/ve/*"],
-            "js": ["src/js/jquery.min.js","src/js/manager.js"]
+            "matches": ["https://www.netflix.com/*"],
+            "js": ["src/js/jquery.min.js","src/js/manager.js"],
+            "css":[]
         }
     ]
   }
