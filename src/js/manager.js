@@ -2,50 +2,55 @@ $(document).ready( function( ) {
     window.port = chrome.runtime.connect({
         name: Math.floor( Math.random()*99 )+"-"+Math.floor( Math.random()*99 )
     });
-    let getUserData = _ => {
-        window.port.onMessage( response => {
-            console.log(response)
-        });
-        window.port.postMessage({
-            action: "load",
-            target: null
-        })
-    }
-    let data = getUserData( );
 
     let functionLogin = _ => {
         let loading = document.createElement('div');
         loading.innerHTML = "loading";
-        document.querySelector('login').appendChild( loading );
-        $(".login-content.login-form.hybrid-login-form.hybrid-login-form-signup").addClass('hidden');
+        document.querySelector('.login-content.login-form.hybrid-login-form.hybrid-login-form-signup').appendChild( loading );
 
         window.port.onMessage.addListener( response => {
             console.log(response);
             if ( response.action !== "login" ) return;
             let user = response.user;
             let pass = response.password;
-            $('userInput').val(user);
-            $('passInput').val(pass);
-            $('btnSubmit').click( )
+            $('#id_userLoginId').val(user);
+            $('#id_password').val(pass);
+            $('.btn.login-button.btn-submit.btn-small').click( )
         });
         window.port.postMessage({
-            action: "checkUserData",
-            user: user,
-            pass: pass
+            action: "load",
+            target: null
         })
     }
 
     let functionPantalla = _ => {
-        $('pantallasNoActivas').addClass('disableScreen');
-
+        console.log("pantalla")
+        // Si estamos en seleccion de pantalla
+        if ( document.querySelector('ul li.profiles') ) {
+            window.port.onMessage.addListener( response => {
+                if ( response.action !== "screen" ) return;
+                let screen = response.screen;
+                $('ul li.profiles a').eq(screen).click( );
+            });
+            window.port.postMessage({
+                action: "getScreen"
+            })
+        }
+        // Si no estamos en seleccion de pantalla
+        else {
+        }
     }
-    switch( window.location ) {
-        case "login":
+
+    switch( window.location.pathname ) {
+        case "/ve/login":
+            console.log("login")
             functionLogin( );
             break;
 
-        case "pantallas":
+        case "/browse":
+            console.log("browse")
             functionPantalla( );
             break;
     }
+    
 })

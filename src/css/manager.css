@@ -1,3 +1,8 @@
+.login-content.login-form.hybrid-login-form.hybrid-login-form-signup div,
+.list-profiles,
+.nav-element.show-kids,
+.nav-element:nth-child(3),
+.nav-element:nth-child(4),
 .hidden {
-    display: none;
+  display: none !important;
 }
