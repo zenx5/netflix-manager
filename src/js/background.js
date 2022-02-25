@@ -12,7 +12,7 @@ chrome.runtime.onConnect.addListener( function(port) {
                 break;
             case 'load':
                 chrome.storage.local.get(msg.target, function(data){
-                    
+                    port.postMessage(data)
                 })
                 break;
         }
